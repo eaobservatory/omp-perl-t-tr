@@ -189,4 +189,114 @@
       </SpIterFolder>
     </SpObs>
   </SpMSB>
+  <SpMSB remaining="1" type="og" subtype="msb">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <SpDRRecipeRef idref="10"/>
+    <SpInstHeterodyneRef idref="8"/>
+    <SpSiteQualityObsCompRef idref="9"/>
+    <SpTelescopeObsCompRef idref="7"/>
+    <estimatedDuration units="seconds">1165.2003312880024</estimatedDuration>
+    <library_version>$Revision$</library_version>
+    <priority>99</priority>
+    <title>Position-switch raster best sb constrained</title>
+    <totalDuration units="seconds">1165.2003312880024</totalDuration>
+    <SpSiteQualityObsComp id="9" type="oc" subtype="schedInfo">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <noiseCalculationTau>0.08</noiseCalculationTau>
+    </SpSiteQualityObsComp>
+    <SpInstHeterodyne id="8" type="oc" subtype="inst.Heterodyne">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <band>best</band>
+      <bandMode>2</bandMode>
+      <beName>acsis</beName>
+      <feBandWidth>3.3E9</feBandWidth>
+      <feIF>6.0E9</feIF>
+      <feName>Uu</feName>
+      <mixers>1</mixers>
+      <mode>2sb</mode>
+      <skyFrequency>2.31321665E11</skyFrequency>
+      <velocityDefinition>radio</velocityDefinition>
+      <velocityFrame>LSRK</velocityFrame>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+      <!--          ACSIS Configuration XML        -->
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+      <subsystems>
+          <subsystem if="6.0E9" bw="1.0E9" overlap="0.0" channels="2048">
+              <line species="N2D+" transition="3 - 2" rest_freq="2.31321665E11"/>
+          </subsystem>
+          <subsystem if="5.0E9" bw="1.0E9" overlap="0.0" channels="2048">
+              <line species="No Line" transition="No Line" rest_freq="2.30321665E11"/>
+          </subsystem>
+      </subsystems>
+
+    </SpInstHeterodyne>
+    <SpDRRecipe id="10" type="oc" subtype="DRRecipe">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <rasterRecipe>REDUCE_SCIENCE_NARROWLINE</rasterRecipe>
+    </SpDRRecipe>
+    <SpTelescopeObsComp id="7" type="oc" subtype="targetList">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_gui_selectedTelescopePos>SCIENCE</meta_gui_selectedTelescopePos>
+      <meta_unique>true</meta_unique>
+      <BASE TYPE="REFERENCE">
+        <target>
+          <targetName></targetName>
+          <spherSystem SYSTEM="J2000">
+            <c1>12:34:56</c1>
+            <c2>7:08:09</c2>
+            <rv defn="radio" frame="LSRK">0.0</rv>
+          </spherSystem>
+        </target>
+        <OFFSET SYSTEM="J2000">
+          <DC1>0.0</DC1>
+          <DC2>1800.0</DC2>
+        </OFFSET>
+      </BASE>
+      <BASE TYPE="SCIENCE">
+        <target>
+          <targetName>Test</targetName>
+          <spherSystem SYSTEM="J2000">
+            <c1>12:34:56</c1>
+            <c2>7:08:09</c2>
+            <rv defn="radio" frame="LSRK">0.0</rv>
+          </spherSystem>
+        </target>
+      </BASE>
+    </SpTelescopeObsComp>
+    <SpObs msb="false" optional="false" remaining="1" type="ob" subtype="none">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <estimatedDuration units="seconds">1165.2003312880024</estimatedDuration>
+      <standard>false</standard>
+      <title>Science Observation</title>
+      <SpIterFolder type="if" subtype="none">
+        <meta_gui_collapsed>false</meta_gui_collapsed>
+        <SpIterRepeat type="ic" subtype="repeat">
+          <meta_gui_collapsed>false</meta_gui_collapsed>
+          <repeatCount>1</repeatCount>
+          <SpIterRasterObs type="ic" subtype="rasterObs">
+            <meta_gui_collapsed>false</meta_gui_collapsed>
+            <obsArea>
+              <PA>0.0</PA>
+              <SCAN_AREA>
+                <AREA HEIGHT="180.0" WIDTH="180.0"/>
+                <SCAN DY="8.0" VELOCITY="8.0" SYSTEM="TRACKING">
+                </SCAN>
+              </SCAN_AREA>
+            </obsArea>
+            <continuumMode>false</continuumMode>
+            <rowsPerCal>1</rowsPerCal>
+            <rowsPerRef>1</rowsPerRef>
+            <sampleTime>1.0</sampleTime>
+            <scanPattern>Boustrophedon</scanPattern>
+            <switchingMode>Position</switchingMode>
+          </SpIterRasterObs>
+        </SpIterRepeat>
+      </SpIterFolder>
+    </SpObs>
+  </SpMSB>
 </SpProg>
