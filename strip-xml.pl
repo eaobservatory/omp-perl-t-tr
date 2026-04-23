@@ -2,6 +2,8 @@
 undef $/;
 $_=<>;
 s/<!--.*?-->//sg;
+s/^\s*\n//mg;  # Remove blank lines
+s/ +$//mg;  # Remove trailing spaces
 s/("OCS config filename"\s*VALUE=)"[a-z0-9._]*"/$1""/s;
 s/<(pointing_offset|smu_offset|dr_disp_machine) [-+_=a-zA-Z0-9". ]*\/>/<!-- \1 removed -->/g;
 print;

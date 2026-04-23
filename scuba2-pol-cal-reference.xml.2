@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="US-ASCII"?><!DOCTYPE OCS_CONFIG  SYSTEM  "/jac_sw/itsroot//ICD/001/ocs.dtd">
 <OCS_CONFIG>
-   
    <OBS_SUMMARY>
-      
       <mapping_mode>scan</mapping_mode>
       <switching_mode>self</switching_mode>
       <obs_type>pointing</obs_type>
       <in_beam>pol</in_beam>
    </OBS_SUMMARY>
    <JOS_CONFIG>
-      
       <tasks>RTS SCUBA2 PTCS SMU</tasks>
       <recipe NAME="scuba2_pointing">
-         <parameters 
+         <parameters
                      JOS_MIN="5082"
                      NUM_CYCLES="4"
                      N_DARKSAMPLES="1724"
@@ -27,7 +24,6 @@
       </recipe>
    </JOS_CONFIG>
    <HEADER_CONFIG>
-      
       <HEADER TYPE="STRING"
               KEYWORD="TELESCOP"
               COMMENT="Name of Telescope"
@@ -89,7 +85,7 @@
       <HEADER TYPE="STRING"
               KEYWORD="PROJECT"
               COMMENT="Project code"
-              VALUE="JCMTCAL" />
+              VALUE="MXXXJXX" />
       <HEADER TYPE="STRING"
               KEYWORD="RECIPE"
               COMMENT="ORAC-DR recipe"
@@ -674,6 +670,10 @@
               KEYWORD="JIG_SCAL"
               COMMENT="[arcsec] Scale of jiggle pattern"
               VALUE="" />
+      <HEADER TYPE="INT"
+              KEYWORD="GRID_CNT"
+              COMMENT="Number of offsets in grid pattern"
+              VALUE="" />
       <HEADER TYPE="STRING"
               KEYWORD="DRMWGHTS"
               COMMENT="Name of file containing DREAM weights"
@@ -1082,20 +1082,18 @@
       </SUBHEADER>
    </HEADER_CONFIG>
    <RTS_CONFIG>
-      
       <stTimeout value="15000" />
       <sampTimeout value="45.0" />
       <opMode value="1" />
       <Sequence size="0" />
    </RTS_CONFIG>
    <SCUBA2_CONFIG>
-      
-      <SUBARRAY_MASK SUBARRAY_ID="s4a" VALUE="ON"/>
+      <SUBARRAY_MASK SUBARRAY_ID="s4a" VALUE="ANY"/>
       <SUBARRAY_MASK SUBARRAY_ID="s4b" VALUE="ON"/>
-      <SUBARRAY_MASK SUBARRAY_ID="s4c" VALUE="ON"/>
+      <SUBARRAY_MASK SUBARRAY_ID="s4c" VALUE="ANY"/>
       <SUBARRAY_MASK SUBARRAY_ID="s4d" VALUE="ON"/>
       <SUBARRAY_MASK SUBARRAY_ID="s8a" VALUE="ON"/>
-      <SUBARRAY_MASK SUBARRAY_ID="s8b" VALUE="ON"/>
+      <SUBARRAY_MASK SUBARRAY_ID="s8b" VALUE="ANY"/>
       <SUBARRAY_MASK SUBARRAY_ID="s8c" VALUE="ON"/>
       <SUBARRAY_MASK SUBARRAY_ID="s8d" VALUE="ON"/>
    </SCUBA2_CONFIG>
@@ -1105,7 +1103,6 @@
                X="0.0"
                Y="0.0"
                WAVELENGTH="863" >
-      
       <!-- smu_offset removed -->
       <!-- pointing_offset removed -->
       <array_area radius="240"/>
@@ -1117,7 +1114,7 @@
       </waveBand>
       <subArray id="s4a"
                 band="B450"
-                health="ON"
+                health="OFF"
                 x="+132"
                 y="-108"
                 mceport="0"
@@ -1139,7 +1136,7 @@
       />
       <subArray id="s4c"
                 band="B450"
-                health="ON"
+                health="OFF"
                 x="-132"
                 y="+108"
                 mceport="2"
@@ -1172,7 +1169,7 @@
       />
       <subArray id="s8b"
                 band="B850"
-                health="ON"
+                health="OFF"
                 x="-108"
                 y="+132"
                 mceport="5"
@@ -1205,16 +1202,8 @@
       />
    </INSTRUMENT>
    <TCS_CONFIG TELESCOPE="JCMT">
-      
-
-      
-
       <SLEW OPTION="TRACK_TIME" TRACK_TIME="153.9024"  />
-
-      
-
       <obsArea>
-         
          <PA>0</PA>
          <SCAN_AREA>
             <OFFSET SYSTEM="TRACKING" TYPE="TAN" >
@@ -1234,15 +1223,8 @@
             </SCAN>
          </SCAN_AREA>
       </obsArea>
-
-      
-
       <SECONDARY MOTION="CONTINUOUS">
-         
       </SECONDARY>
-
-      
-
       <DOME MODE="BASE" />
    </TCS_CONFIG>
 </OCS_CONFIG>

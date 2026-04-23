@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="US-ASCII"?><!DOCTYPE OCS_CONFIG  SYSTEM  "/jac_sw/itsroot//ICD/001/ocs.dtd">
 <OCS_CONFIG>
-   
    <OBS_SUMMARY>
-      
       <mapping_mode>grid</mapping_mode>
       <switching_mode>chop</switching_mode>
       <obs_type>science</obs_type>
    </OBS_SUMMARY>
    <JOS_CONFIG>
-      
       <tasks>RTS FE_A PTCS SMU CONTROLLER CORRTASK5 IFTASK</tasks>
       <recipe NAME="jiggle_chop">
-         <parameters 
+         <parameters
                      JOS_MULT="8"
                      NUM_CYCLES="1"
                      NUM_NOD_SETS="1"
@@ -24,7 +21,6 @@
       </recipe>
    </JOS_CONFIG>
    <HEADER_CONFIG>
-      
       <HEADER TYPE="LOGICAL"
               KEYWORD="EXTEND"
               COMMENT="Extension exists"
@@ -885,6 +881,10 @@
               KEYWORD="JIG_SCAL"
               COMMENT="[arcsec] Scale of jiggle pattern"
               VALUE="" />
+      <HEADER TYPE="INT"
+              KEYWORD="GRID_CNT"
+              COMMENT="Number of offsets in grid pattern"
+              VALUE="1" />
       <HEADER TYPE="FLOAT"
               KEYWORD="MAP_HGHT"
               COMMENT="[arcsec] Requested height of map"
@@ -1249,16 +1249,26 @@
               VALUE="" >
          <DRAMA TASK="PTCS" PARAM="ROTATOR.SYSTEM" EVENT="START" />
       </HEADER>
+      <HEADER TYPE="FLOAT"
+              KEYWORD="ROT_IAST"
+              COMMENT="[deg] K-mirror image angle at start"
+              VALUE="" >
+         <DRAMA TASK="PTCS" PARAM="ROTATOR.PA_FIXED" EVENT="START" MULT="57.2957795131" />
+      </HEADER>
+      <HEADER TYPE="FLOAT"
+              KEYWORD="ROT_IAEN"
+              COMMENT="[deg] K-mirror image angle at end"
+              VALUE="" >
+         <DRAMA TASK="PTCS" PARAM="ROTATOR.PA_FIXED" EVENT="END" MULT="57.2957795131" />
+      </HEADER>
    </HEADER_CONFIG>
    <RTS_CONFIG>
-      
       <stTimeout value="15000" />
       <sampTimeout value="20.0" />
       <opMode value="1" />
       <Sequence size="0" />
    </RTS_CONFIG>
    <FRONTEND_CONFIG>
-      
       <REST_FREQUENCY>220.054569800248</REST_FREQUENCY>
       <FREQ_OFF_SCALE>0</FREQ_OFF_SCALE>
       <SIDEBAND>USB</SIDEBAND>
@@ -1273,7 +1283,6 @@
                X="0.0"
                Y="0.0"
                WAVELENGTH="1360.22803204084" >
-      
       <IF_CENTER_FREQ>4.0</IF_CENTER_FREQ>
       <bw units="MHz" value="1800" />
       <!-- smu_offset removed -->
@@ -1292,11 +1301,7 @@
       </receptor>
    </INSTRUMENT>
    <TCS_CONFIG TELESCOPE="JCMT">
-      
-      
-      
       <BASE TYPE="SCIENCE">
-         
          <target>
             <targetName>OMC-1</targetName>
             <spherSystem SYSTEM="J2000">
@@ -1305,13 +1310,9 @@
                <rv defn="radio" frame="LSR">0.0</rv>
             </spherSystem>
          </target>
-         
          <TRACKING_SYSTEM SYSTEM="ICRS" />
       </BASE>
-      
-      
       <BASE TYPE="REFERENCE">
-         
          <target>
             <targetName>OMC-1</targetName>
             <spherSystem SYSTEM="J2000">
@@ -1320,49 +1321,31 @@
                <rv defn="radio" frame="LSR">0.0</rv>
             </spherSystem>
          </target>
-         
          <OFFSET SYSTEM="J2000" TYPE="TAN" >
             <DC1>-1909667.03593407</DC1>
             <DC2>19400.9112282126</DC2>
          </OFFSET>
-         
          <TRACKING_SYSTEM SYSTEM="ICRS" />
       </BASE>
-
-      
-
       <SLEW OPTION="TRACK_TIME" TRACK_TIME="194.625"  />
-
-      
-
       <obsArea>
-         
          <PA>0</PA>
          <OFFSET SYSTEM="TRACKING" TYPE="TAN" >
             <DC1>0</DC1>
             <DC2>0</DC2>
          </OFFSET>
       </obsArea>
-
-      
-
       <SECONDARY MOTION="CONTINUOUS">
-         
          <CHOP SYSTEM="AZEL" >
             <THROW>60.0</THROW>
             <PA>90</PA>
          </CHOP>
       </SECONDARY>
-
-      
-
       <INST_AP NAME="A" />
       <DOME MODE="BASE" />
    </TCS_CONFIG>
    <ACSIS_CONFIG>
-      
       <cube_list>
-         
          <cube id="CUBE1">
             <group_centre>
                <spherSystem SYSTEM="J2000">
@@ -1472,9 +1455,7 @@
             <smoothing_rad>4.67611952467954</smoothing_rad>
          </cube>
       </cube_list>
-
       <line_list>
-         
          <rest_frequency id="tr13-CO2-1" units="GHz" molecule="13-CO" transition="2 - 1" >
             220.3986765
          </rest_frequency>
@@ -1485,9 +1466,7 @@
             219.949442
          </rest_frequency>
       </line_list>
-
       <spw_list>
-         
          <doppler_field ref="FE.DOPPLER"/>
          <spw_id_field ref="SPEC_WINDOW_ID"/>
          <fe_lo_field ref="FE.LO_FREQUENCY"/>
@@ -1544,9 +1523,7 @@
             </if_coordinate>
          </spectral_window>
       </spw_list>
-
       <ACSIS_IF>
-         
          <dcm id="0" bw_mode="250MHz"/>
          <dcm id="1" bw_mode="250MHz"/>
          <dcm id="2" bw_mode="250MHz"/>
@@ -1586,9 +1563,7 @@
          <lo3 freq="2000.0"/>
          <quadrant id="2" subband_mode="4"/>
       </ACSIS_IF>
-
       <ACSIS_corr>
-         
          <cm id="0" bw_mode="250MHzx4096"/>
          <cm id="1" bw_mode="250MHzx4096"/>
          <cm id="2" bw_mode="250MHzx4096"/>
@@ -1623,29 +1598,21 @@
          <cm id="31" bw_mode="250MHzx4096"/>
          <rts_parms int_interval="50" timing_src="RTS_SOFT"/>
       </ACSIS_corr>
-
       <ACSIS_map>
-         
-         
          <map_id cm_id="16" dcm_id="16" receptor_id="A" spw_id="SPW1"/>
          <map_id cm_id="17" dcm_id="17" receptor_id="A" spw_id="SPW2"/>
          <map_id cm_id="18" dcm_id="18" receptor_id="A" spw_id="SPW3"/>
          <map_id cm_id="19" dcm_id="19" receptor_id="A" spw_id="SPW4"/>
       </ACSIS_map>
-
       <be_deg_factor>1.23</be_deg_factor>
       <red_obs_mode>grid/chop</red_obs_mode>
-      <red_recipe_id>incorrect. Should be read from file</red_recipe_id>
+      <red_recipe_id>6-Apr-2004</red_recipe_id>
       <semantic_links>
-         
-         <spw_field ref="SPEC_WINDOW_ID"/> 
+         <spw_field ref="SPEC_WINDOW_ID"/>
       </semantic_links>
       <red_config_list>
-         
-
          <red_config xmlns:xi="http://www.w3.org/2001/XInclude" id="SPECTRUM_REDUCTION">
-
-            <reducer id="RAW" display="engineering" xml:base="reducers/RAW.ent">   
+            <reducer id="RAW" display="engineering" xml:base="reducers/RAW.ent">
                <help>
                   Receives all data from the Sync task and completes a well-formed data
                   record for passing to the rest of the system.</help>
@@ -1655,7 +1622,6 @@
                   </ro_source>
                </ro_source_list>
                <ro_recipe>
-                  
                   <in_ref ref="CM_DATA.CM_ID"/>
                   <function name="rvalue"/>
                   <function name="enter"/>
@@ -1667,7 +1633,6 @@
                   <function name="enter"/>
                   <out_object id="FEED1"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="RTS.NUMBER"/>
                   <function name="rvalue"/>
                   <in_ref ref="END_SEQ_NO"/>
@@ -1675,18 +1640,15 @@
                   <function name="subtract"/>
                   <out_object id="STEPS_TO_END_SEQ"/>
                   <function name="lvalue"/>
-                  
                   <out_object id="DESCRIMINATOR_TSYS"/>
                   <marker/>
                   <in_ref ref="SPEC_WINDOW_ID"/>
                   <in_ref ref="FEED1"/>
                   <function name="make_id_string"/>
-                  
                   <out_object id="DESCRIMINATOR_ON-OFF"/>
                   <marker/>
                   <in_ref ref="SPEC_WINDOW_ID"/>
                   <in_ref ref="FEED1"/>
-                  
                   <in_ref ref="STEPS_TO_END_SEQ"/>
                   <in_ref ref="SPEC_WINDOW_ID"/>
                   <taql>DRCONTROLBITS.SHARED_OFFS || (isdefined(ROVER.POL_INDEX))</taql>
@@ -1703,12 +1665,10 @@
                   <function name="evaluate_taql"/>
                   <function name="select"/>
                   <function name="make_id_string"/>
-                  
                   <out_object id="DESCRIMINATOR_COADD"/>
                   <marker/>
                   <in_ref ref="SPEC_WINDOW_ID"/>
                   <in_ref ref="FEED1"/>
-                  
                   <in_ref ref="FEED1"/>
                   <in_ref ref="SMU.JIG_INDEX"/>
                   <taql>isdefined(SMU)</taql>
@@ -1725,13 +1685,11 @@
                   <function name="evaluate_taql"/>
                   <function name="select"/>
                   <function name="make_id_string"/>
-                  
                   <in_ref ref="FE.CHANNEL_MASK"/>
                   <function name="rvalue"/>
                   <function name="array_element"/>
                   <out_object id="CHANNEL_MASK"/>
                   <function name="lvalue"/>
-                  
                   <function name="cm2dcm"/>
                   <function name="enter"/>
                   <out_object id="DCM_ID"/>
@@ -1741,41 +1699,36 @@
                   <function name="array_element"/>
                   <out_object id="DCM_TP_IN"/>
                   <function name="lvalue"/>
-                   
                   <double> 2 </double>
                   <in_ref ref="RTS.TAI_START"/>
                   <function name="rvalue"/>
                   <in_ref ref="RTS.TAI_END"/>
-                  <function name="rvalue"/>  
-                  <function name="add"/>   
+                  <function name="rvalue"/>
+                  <function name="add"/>
                   <function name="divide"/>
                   <out_object id="TIME"/>
-                  <function name="lvalue"/>  
-                  
-                  <in_ref ref="RTS.STEP_TIME"/>  
-                  <function name="rvalue"/>   
+                  <function name="lvalue"/>
+                  <in_ref ref="RTS.STEP_TIME"/>
+                  <function name="rvalue"/>
                   <out_object id="EXPOSURE"/>
                   <function name="lvalue"/>
-                  <in_ref ref="RTS.STEP_TIME"/>  
+                  <in_ref ref="RTS.STEP_TIME"/>
                   <function name="rvalue"/>
                   <out_object id="INTERVAL"/>
                   <function name="lvalue"/>
                   <integer> 0 </integer>
                   <out_object id="POL_ID"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="CM_DATA.CM_LAGS"/>
                   <out_object id="FLOAT_DATA"/>
                   <function name="rename"/>
-
                   <out_object id="FREQ_SCALE"/>
                   <function name="get_frequency_scale"/>
                </ro_recipe>
             </reducer>
-            
             <reducer id="A_REFSKY" display="engineering" xml:base="reducers/A_REFSKY.ent">
                <help>
-                  Does basic reduction on measurements of the empty SKY load when the source 
+                  Does basic reduction on measurements of the empty SKY load when the source
                   is in the A beam.</help>
                <ro_source_list>
                   <ro_source handshaking="1">
@@ -1796,27 +1749,24 @@
                   <function name="window"/>
                   <function name="align"/>
                   <function name="fft"/>
-                  <in_ref ref="DCM_TP_IN"/>   
+                  <in_ref ref="DCM_TP_IN"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
                   <function name="rvalue"/>
-                  <function name="coadd"/> 
+                  <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="A_SOURCE" display="engineering" xml:base="reducers/A_SOURCE.ent">
                <help>
-                  Performs basic reduction on all source spectra taken with the source in 
+                  Performs basic reduction on all source spectra taken with the source in
                   the A beam.</help>
                <ro_source_list>
                   <ro_source handshaking="1">
@@ -1839,7 +1789,7 @@
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="FLOAT_DATA"/>
-                  <function name="lvalue"/>       
+                  <function name="lvalue"/>
                </ro_recipe>
             </reducer>
             <reducer id="A_SOURCE_CAL" display="engineering" xml:base="reducers/A_SOURCE_CAL_previous.ent">
@@ -1848,7 +1798,7 @@
                   off is used. The result is multiplied by the last TSYS measured and
                   the beam sensitivity for that feed.</help>
                <ro_source_list>
-                  <ro_source> 
+                  <ro_source>
                      SELECT FROM <in_ref ref="A_SOURCE"/>
                   </ro_source>
                   <ro_source>
@@ -1859,7 +1809,6 @@
                   </ro_source>
                </ro_source_list>
                <ro_recipe>
-                  
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
                   <function name="rvalue"/>
                   <in_ref ref="EXPOSURE"/>
@@ -1868,7 +1817,6 @@
                   <function name="previous"/>
                   <out_object id="EXPOSURE_OFF_A"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -1893,7 +1841,6 @@
                   <function name="multiply"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="TSYS_MEDIAN"/>
@@ -1910,8 +1857,6 @@
                   <function name="previous"/>
                   <in_ref ref="TREC_MEDIAN"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="ETAL"/>
@@ -1920,8 +1865,6 @@
                   <function name="previous"/>
                   <in_ref ref="ETAL"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="TSYS_TAU"/>
@@ -1947,7 +1890,7 @@
                   result is multiplied by the last TSYS measured and the beam sensitivity
                   for that feed.</help>
                <ro_source_list>
-                  <ro_source> 
+                  <ro_source>
                      SELECT FROM <in_ref ref="A_SOURCE"/>
                   </ro_source>
                   <ro_source>
@@ -1986,7 +1929,7 @@
             </reducer>
             <reducer id="A_SOURCE_CAL_MERGED" display="engineering" xml:base="reducers/A_SOURCE_CAL_MERGED.ent">
                <help>
-                  Does a weighted merge of the subbands in the system. The weights are 
+                  Does a weighted merge of the subbands in the system. The weights are
                   derived from the calibration reference sky measurements for higher S/N.</help>
                <ro_source_list>
                   <ro_source>
@@ -2016,7 +1959,7 @@
             </reducer>
             <reducer id="A_SOURCE_CAL_MERGED_DISPLAY" display="engineering" xml:base="reducers/A_SOURCE_CAL_MERGED_DISPLAY.ent">
                <help>
-                  Does a weighted merge of the subbands in the system. The weights are 
+                  Does a weighted merge of the subbands in the system. The weights are
                   derived from the calibration reference sky measurements for higher S/N.</help>
                <ro_source_list>
                   <ro_source>
@@ -2064,8 +2007,6 @@
                   <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <function name="enter"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
@@ -2077,7 +2018,6 @@
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE_OFF_A"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="B_REFSKY" display="engineering" xml:base="reducers/B_REFSKY.ent">
@@ -2097,28 +2037,25 @@
                </ro_source_list>
                <ro_recipe>
                   <string>SMU.LAST_CHOP_PHASE==1</string>
-                  <function name="evaluate_taql"/> 
+                  <function name="evaluate_taql"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
                   <function name="window"/>
                   <function name="align"/>
                   <function name="fft"/>
                   <in_ref ref="DCM_TP_IN"/>
-                  <function name="rvalue"/>  
+                  <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
                   <function name="rvalue"/>
-                  <function name="coadd"/> 
+                  <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
-                  <function name="lvalue"/>   
-                  
-                  
+                  <function name="lvalue"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="B_SOURCE" display="engineering" xml:base="reducers/B_SOURCE.ent">
@@ -2143,10 +2080,10 @@
                   <function name="align"/>
                   <function name="fft"/>
                   <in_ref ref="DCM_TP_IN"/>
-                  <function name="rvalue"/> 
+                  <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="FLOAT_DATA"/>
-                  <function name="lvalue"/>   
+                  <function name="lvalue"/>
                </ro_recipe>
             </reducer>
             <reducer id="B_SOURCE_CAL" display="engineering" xml:base="reducers/B_SOURCE_CAL_previous.ent">
@@ -2155,7 +2092,7 @@
                   off is used. The result is multiplied by the last TSYS measured and
                   the beam sensitivity for that feed.</help>
                <ro_source_list>
-                  <ro_source> 
+                  <ro_source>
                      SELECT FROM <in_ref ref="B_SOURCE"/>
                   </ro_source>
                   <ro_source>
@@ -2166,18 +2103,16 @@
                   </ro_source>
                </ro_source_list>
                <ro_recipe>
-                  
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
-                  <function name="rvalue"/>  
+                  <function name="rvalue"/>
                   <in_ref ref="EXPOSURE"/>
                   <in_ref ref="TIME"/>
                   <in_ref ref="B_REFSKY"/>
                   <function name="previous"/>
                   <out_object id="EXPOSURE_OFF_B"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
-                  <function name="rvalue"/>  
+                  <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <in_ref ref="TIME"/>
                   <in_ref ref="B_REFSKY"/>
@@ -2188,7 +2123,7 @@
                   <function name="subtract"/>
                   <function name="divide"/>
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
-                  <function name="rvalue"/>  
+                  <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <in_ref ref="TIME"/>
                   <in_ref ref="TSYS"/>
@@ -2209,7 +2144,7 @@
                   result is multiplied by the last TSYS measured and the beam sensitivity
                   for that feed.</help>
                <ro_source_list>
-                  <ro_source> 
+                  <ro_source>
                      SELECT FROM <in_ref ref="B_SOURCE"/>
                   </ro_source>
                   <ro_source>
@@ -2221,7 +2156,7 @@
                </ro_source_list>
                <ro_recipe>
                   <in_ref ref="DESCRIMINATOR_ON-OFF"/>
-                  <function name="rvalue"/>  
+                  <function name="rvalue"/>
                   <function name="enter"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <in_ref ref="TIME"/>
@@ -2248,7 +2183,7 @@
             </reducer>
             <reducer id="B_SOURCE_CAL_MERGED" display="engineering" xml:base="reducers/B_SOURCE_CAL_MERGED.ent">
                <help>
-                  Does a weighted merge of the subbands in the system. The weights are 
+                  Does a weighted merge of the subbands in the system. The weights are
                   derived from the calibration reference sky measurements for higher S/N.</help>
                <ro_source_list>
                   <ro_source>
@@ -2278,7 +2213,7 @@
             </reducer>
             <reducer id="B_SOURCE_CAL_MERGED_DISPLAY" display="engineering" xml:base="reducers/B_SOURCE_CAL_MERGED_DISPLAY.ent">
                <help>
-                  Does a weighted merge of the subbands in the system. The weights are 
+                  Does a weighted merge of the subbands in the system. The weights are
                   derived from the calibration reference sky measurements for higher S/N.</help>
                <ro_source_list>
                   <ro_source>
@@ -2326,8 +2261,6 @@
                   <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <function name="enter"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
@@ -2339,11 +2272,8 @@
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE_OFF_B"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
-            
-            
             <reducer id="AMBIENT" display="engineering" xml:base="reducers/AMBIENT.ent">
                <help>
                   Basic reduction on measurements of the AMBIENT load.</help>
@@ -2355,12 +2285,12 @@
                   </ro_source>
                </ro_source_list>
                <ro_recipe>
-                  <taql>RTS.LAST_INTEG==1</taql>  
+                  <taql>RTS.LAST_INTEG==1</taql>
                   <function name="evaluate_taql"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
                   <function name="window"/>
-                  <function name="align"/> 
+                  <function name="align"/>
                   <function name="fft"/>
                   <in_ref ref="DCM_TP_IN"/>
                   <function name="rvalue"/>
@@ -2370,20 +2300,17 @@
                   <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="CAL_ASSEMBLER" display="engineering" xml:base="reducers/CAL_ASSEMBLER.ent">
                <help>
                   Assembles reduced data from a calibration group into a single record that
-                  can be archived. This object does not provide data for 
+                  can be archived. This object does not provide data for
                   display.</help>
                <ro_source_list>
                   <ro_source>
@@ -2409,9 +2336,9 @@
             </reducer>
             <reducer id="CAL_REFSKY" display="engineering" xml:base="reducers/CAL_REFSKY.ent">
                <help>
-                  Does basic reduction on measurements of the empty SKY load to be used for 
+                  Does basic reduction on measurements of the empty SKY load to be used for
                   calculating TSYS.</help>
-               <ro_source_list>   
+               <ro_source_list>
                   <ro_source handshaking="1">
                      SELECT FROM <in_ref ref="RAW"/> WHERE
                       isdefined(TCS.SOURCE) &amp;&amp;
@@ -2424,7 +2351,7 @@
                </ro_source_list>
                <ro_recipe>
                   <taql>RTS.LAST_INTEG==1</taql>
-                  <function name="evaluate_taql"/> 
+                  <function name="evaluate_taql"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
                   <function name="window"/>
@@ -2435,23 +2362,19 @@
                   <function name="multiply"/>
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
-                  <function name="coadd"/> 
+                  <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="ETA_SKY" display="engineering" xml:base="reducers/ETA_SKY.ent">
                <help>
                   Calculates eta_sky from TA_SKY using the formula:
-
                                           eta_tel*(Jatm - Jspill) - TAsky(n) + Jspill
                             eta_sky(n) = {_______________________________________}**1/A
                                                        eta_tel * Jatm</help>
@@ -2498,7 +2421,7 @@
                   <float> 1.0 </float>
                   <function name="divide"/>
                   <function name="y_to_the_x"/>
-                  <in_ref ref="FLOAT_DATA"/> 
+                  <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
                </ro_recipe>
             </reducer>
@@ -2506,7 +2429,6 @@
                <help>
                   Calculates the receiver gain from LOAD2 and AMBIENT using the following
                   formula:
-
                                       Vload2(n) - Vamb(n)
                             gain(n) = __________________
                                          Jload2 - Jamb</help>
@@ -2520,7 +2442,7 @@
                </ro_source_list>
                <ro_recipe>
                   <function name="get_observed_marker_frequency"/>
-                  <function name="enter"/>   
+                  <function name="enter"/>
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FE.TEMP_AMBIENT"/>
@@ -2530,7 +2452,7 @@
                   <function name="brightness_temperature"/>
                   <function name="swapxy"/>
                   <in_ref ref="FE.TEMP_LOAD2"/>
-                  <function name="rvalue"/> 
+                  <function name="rvalue"/>
                   <function name="brightness_temperature"/>
                   <function name="subtract"/>
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
@@ -2549,7 +2471,7 @@
             </reducer>
             <reducer id="LOAD2" display="engineering" xml:base="reducers/LOAD2.ent">
                <help>
-                  Basic reduction on measurements of the LOAD2 load.</help>  
+                  Basic reduction on measurements of the LOAD2 load.</help>
                <ro_source_list>
                   <ro_source handshaking="1">
                      SELECT FROM <in_ref ref="RAW"/> WHERE
@@ -2559,10 +2481,10 @@
                </ro_source_list>
                <ro_recipe>
                   <taql>RTS.LAST_INTEG==1</taql>
-                  <function name="evaluate_taql"/> 
+                  <function name="evaluate_taql"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
-                  <function name="window"/> 
+                  <function name="window"/>
                   <function name="align"/>
                   <function name="fft"/>
                   <in_ref ref="DCM_TP_IN"/>
@@ -2573,21 +2495,17 @@
                   <function name="coadd"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
-                  
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <function name="multiply"/>
                   <in_ref ref="EXPOSURE"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="TASKY" display="engineering" xml:base="reducers/TASKY.ent">
                <help>
                   Calculates TAsky from each REFSKY measurement and TREC and GAIN according
                   to the formula:
-
                                        Vsky(n)
                             TAsky(n) = _______  -  Trec(n)
                                        gain(n)</help>
@@ -2627,7 +2545,6 @@
                <help>
                   Calculates the receiver temperature from LOAD2 and AMBIENT measurements
                   using the formula:
-
                                       AMBIENT(n)*Jload2 - LOAD2(n)*Jamb
                             Trec(n) = _____________________________
                                             LOAD2(n) - AMBIENT(n)</help>
@@ -2643,7 +2560,7 @@
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
-                  <in_ref ref="GROUP"/> 
+                  <in_ref ref="GROUP"/>
                   <in_ref ref="AMBIENT"/>
                   <function name="near"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -2668,31 +2585,27 @@
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
-                  <in_ref ref="GROUP"/> 
+                  <in_ref ref="GROUP"/>
                   <in_ref ref="AMBIENT"/>
                   <function name="near"/>
-                  <function name="multiply"/>  
+                  <function name="multiply"/>
                   <function name="subtract"/>
-                  <function name="divide"/>  
-                  
+                  <function name="divide"/>
                   <function name="enter"/>
                   <function name="median"/>
                   <out_object id="TREC_MEDIAN"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="FLOAT_DATA"/>
-                  <function name="lvalue"/>       
+                  <function name="lvalue"/>
                </ro_recipe>
             </reducer>
             <reducer id="TSYS" display="observing" xml:base="reducers/TSYS.ent">
                <help>
                   Calculates the system temperature from TA_SKY, TREC and ETA_SKY using the
                   following formula:
-
                                             TAsky(n) + Trec(n)
                             Tsys(n) = ____________________________
                                       Gs * eta_tel * eta_sky(n)**A
-
                   The median of the TSYS spectrum is placed in TSYS_MEDIAN</help>
                <ro_source_list>
                   <ro_source>
@@ -2718,11 +2631,9 @@
                   <function name="get_observed_marker_frequency"/>
                   <function name="enter"/>
                   <function name="get_eta_tel"/>
-                  
                   <function name="enter"/>
                   <out_object id="ETAL"/>
                   <function name="lvalue"/>
-                  
                   <function name="swapxy"/>
                   <in_ref ref="FEED1"/>
                   <function name="rvalue"/>
@@ -2747,7 +2658,6 @@
                   <function name="lvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="TREC_MEDIAN"/>
@@ -2756,8 +2666,6 @@
                   <function name="near"/>
                   <in_ref ref="TREC_MEDIAN"/>
                   <function name="lvalue"/>
-                  
-                  
                   <float>  0.0   </float>
                   <out_object id="TSYS_TAU"/>
                   <function name="lvalue"/>
@@ -2766,8 +2674,6 @@
                   <function name="lvalue"/>
                </ro_recipe>
             </reducer>
-            
-
             <reducer id="TSYS_LOGGER" xml:base="reducers/TSYS_LOGGER.ent">
                <help>Logs some values to a file</help>
                <ro_source_list>
@@ -2788,13 +2694,11 @@
                   </ro_source>
                </ro_source_list>
                <ro_recipe>
-
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
                   <function name="mean"/>
                   <out_object id="TSYS_MEAN"/>
                   <function name="lvalue"/>
-
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -2804,22 +2708,18 @@
                   <function name="mean"/>
                   <out_object id="TREC_MEAN"/>
                   <function name="lvalue"/>
-
                   <function name="get_observed_marker_frequency"/>
                   <in_ref ref="WEATHER.Air_Temp"/>
                   <function name="rvalue"/>
                   <function name="brightness_temperature"/>
                   <out_object id="Jatm"/>
                   <function name="lvalue"/>
-
                   <function name="get_observed_marker_frequency"/>
                   <in_ref ref="FE.TEMP_TSPILL"/>
                   <function name="rvalue"/>
                   <function name="brightness_temperature"/>
                   <out_object id="Jspill"/>
                   <function name="lvalue"/>
-
-
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -2829,7 +2729,6 @@
                   <function name="mean"/>
                   <out_object id="GAIN_MEAN"/>
                   <function name="lvalue"/>
-
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -2839,7 +2738,6 @@
                   <function name="mean"/>
                   <out_object id="TA_SKY_MEAN"/>
                   <function name="lvalue"/>
-
                   <in_ref ref="DESCRIMINATOR_TSYS"/>
                   <function name="rvalue"/>
                   <in_ref ref="FLOAT_DATA"/>
@@ -2849,7 +2747,6 @@
                   <function name="mean"/>
                   <out_object id="ETA_SKY_MEAN"/>
                   <function name="lvalue"/>
-
                   <marker/>
                   <string>TSYS_vars</string>
                   <in_ref ref="FEED1"/>
@@ -2862,13 +2759,11 @@
                   <in_ref ref="TREC_MEAN"/>
                   <in_ref ref="TSYS_MEAN"/>
                   <function name="logTable"/>
-
                </ro_recipe>
             </reducer>
-
             <reducer id="SOURCE" display="engineering" xml:base="reducers/SOURCE_chop.ent">
                <help>
-                  Average of the results from A_SOURCE_CAL_MERGED_COADD and 
+                  Average of the results from A_SOURCE_CAL_MERGED_COADD and
                   B_SOURCE_CAL_MERGED_COADD.</help>
                <ro_source_list>
                   <ro_source>
@@ -2888,12 +2783,11 @@
                   <in_ref ref="B_SOURCE_CAL_MERGED_COADD"/>
                   <function name="near"/>
                   <function name="add"/>
-                  <float> 2.0 </float>  
+                  <float> 2.0 </float>
                   <function name="swapxy"/>
                   <function name="divide"/>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="lvalue"/>
-                  
                   <in_ref ref="EXPOSURE"/>
                   <function name="rvalue"/>
                   <in_ref ref="DESCRIMINATOR_COADD"/>
@@ -2916,21 +2810,20 @@
                   <function name="add"/>
                   <out_object id="EXPOSURE_OFF"/>
                   <function name="lvalue"/>
-                  
                </ro_recipe>
             </reducer>
             <reducer id="SOURCE_BASELINE" display="engineering" xml:base="reducers/SOURCE_BASELINE.ent">
                <help>
-                  Fits a baseline to the result of SOURCE.</help>   
+                  Fits a baseline to the result of SOURCE.</help>
                <ro_source_list>
                   <ro_source>
                      SELECT FROM <in_ref ref="SOURCE"/>
                   </ro_source>
-               </ro_source_list> 
-               <ro_recipe>     
+               </ro_source_list>
+               <ro_recipe>
                   <in_ref ref="FLOAT_DATA"/>
                   <function name="rvalue"/>
-                  <function name="baseline"/>  
+                  <function name="baseline"/>
                   <out_object id="FIT_PARAMETERS"/>
                   <function name="lvalue"/>
                   <out_object id="FIT_TYPE"/>
@@ -2944,7 +2837,7 @@
             <reducer id="SPECTRUM_RESULT" display="observing" xml:base="reducers/SPECTRUM_RESULT_chop_cal.ent">
                <help>
                   This is the fully reduced spectrum. It is obtained by subtracting the next
-                  baseline received from SOURCE_BASELINE off each spectrum received from 
+                  baseline received from SOURCE_BASELINE off each spectrum received from
                   SOURCE.</help>
                <ro_source_list>
                   <ro_source>
@@ -2975,7 +2868,6 @@
                   <function name="lvalue"/>
                </ro_recipe>
             </reducer>
-
             <mswriter id="RAW_MSWRITER">
                <ms_root> raw_jiggle_chop </ms_root>
                <ms_chunk_size> 5000 </ms_chunk_size>
@@ -3065,7 +2957,7 @@
                      SELECT FROM <in_ref ref="RAW"/>
                   </ro_source>
                   <weather_columns>
-                     <ANTENNA_ID default="0"/>  
+                     <ANTENNA_ID default="0"/>
                      <TIME field_ref="TIME"/>
                      <INTERVAL default="-1"/>
                      <PRESSURE field_ref="WEATHER.Pressure"/>
@@ -3074,20 +2966,17 @@
                      <ms_column column_id="NS_JCMT_TSPILL" field_ref="FE.TEMP_TSPILL" type="TpDouble"/>
                   </weather_columns>
                </ms_weather>
-            </mswriter>   
-
+            </mswriter>
          </red_config>
-
       </red_config_list>
       <gridder_config xml:base="reducers/GRIDDER_CONFIG_cal.ent">
-         
          <gridder_source>
             <source_params>
                <in_ref ref="RTS"/>
                <in_ref ref="DRCONTROL"/>
                <in_ref ref="SOURCE_RP"/>
                <in_ref ref="SOURCE_RO"/>
-               <in_ref ref="FEED1"/>  
+               <in_ref ref="FEED1"/>
                <in_ref ref="SPEC_WINDOW_ID"/>
                <in_ref ref="TIME"/>
                <in_ref ref="TCS"/>
@@ -3100,14 +2989,13 @@
                <in_ref ref="TSYS_MEDIAN"/>
                <in_ref ref="TREC_MEDIAN"/>
                <in_ref ref="ETAL"/>
-               <in_ref ref="END_SEQ_NO"/> 
+               <in_ref ref="END_SEQ_NO"/>
             </source_params>
             <source_object ref="SPECTRUM_RESULT"/>
          </gridder_source>
          <source_data ref="FLOAT_DATA"/>
       </gridder_config>
       <swriter_config xml:base="reducers/SWRITER_CONFIG.ent">
-         
          <swriter_source>
             <source_params>
                <in_ref ref="RTS"/>
@@ -3141,10 +3029,7 @@
          <source_data ref="FLOAT_DATA"/>
       </swriter_config>
       <rtd_config>
-         
-
          <display_timeout> 120  </display_timeout>
-
          <spectrum_disp id="display0">
             <source_object ref="A_SOURCE_CAL_MERGED_DISPLAY"/>
             <source_data ref="FLOAT_DATA"/>
@@ -3178,12 +3063,10 @@
                </range>
             </acceptable_tsys>
          </spectrum_disp>
-
          <image_disp id="display2">
             <source_cube ref="CUBE1"/>
             <data_selection type="MAX_VALUE"/>
             <spec_scale type="VELOCITY" freq_reference="LSRK" vel_reference="RADIO">
-               
                <range units="channel">
                   <min> -100 </min>
                   <max> 100 </max>
@@ -3191,11 +3074,8 @@
             </spec_scale>
             <update_rate number="8"/>
          </image_disp>
-
       </rtd_config>
       <process_layout>
-         
-
          <machine_table>
             <dr_machine virtual_machine="number0" real_machine="ocsmaster"/>
             <dr_machine virtual_machine="number1" real_machine="acsis1"/>
@@ -3211,67 +3091,38 @@
             <dr_machine virtual_machine="specwriter_machine" real_machine="acsis11"/>
             <dr_machine virtual_machine="fe_wrapper_machine" real_machine="koloa"/>
             <dr_machine virtual_machine="namakanui" real_machine="koloa" no_nuke="1"/>
-            
             <!-- dr_disp_machine removed -->
             <!-- dr_disp_machine removed -->
             <!-- dr_disp_machine removed -->
             <!-- dr_disp_machine removed -->
-
-
-            
-
             <da_machine virtual_machine="sc2da8a" real_machine="sc2da8a"/>
             <da_machine virtual_machine="sc2da8b" real_machine="sc2da8b"/>
             <da_machine virtual_machine="sc2da8c" real_machine="sc2da8c"/>
             <da_machine virtual_machine="sc2da8d" real_machine="sc2da8d"/>
             <da_machine virtual_machine="sc2da4a" real_machine="sc2da4a"/>
+            <da_machine virtual_machine="sc2da4b" real_machine="sc2da4b"/>
             <da_machine virtual_machine="sc2da4c" real_machine="sc2da4c"/>
             <da_machine virtual_machine="sc2da4d" real_machine="sc2da4d"/>
-            <da_machine virtual_machine="sc2da4b" real_machine="sc2da4b"/>
             <da_machine virtual_machine="sc2aux" real_machine="pol2"/>
-
          </machine_table>
-
-
-         <monitor_layout> 
-
+         <monitor_layout>
             <monitor_process id="corr_monitor1" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK1"/>
-
             <monitor_process id="corr_monitor2" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK2"/>
-
             <monitor_process id="corr_monitor3" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK3"/>
-
             <monitor_process id="corr_monitor4" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK4"/>
-
             <monitor_process id="corr_monitor5" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK5"/>
-
             <monitor_process id="corr_monitor6" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK6"/>
-
             <monitor_process id="corr_monitor7" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK7"/>
-
             <monitor_process id="corr_monitor8" interface="CORR_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="CORRTASK8"/>
-
             <monitor_process id="fe_monitor" interface="FE_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source=""/>
-
             <monitor_process id="ws_monitor" interface="WEATHER_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="ENVIRO"/>
-
             <monitor_process id="wvm_monitor" interface="WVM_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="WVM"/>
-
             <monitor_process id="if_monitor" interface="IF_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="IFTASK"/>
-
-            
-
             <monitor_process id="smu_monitor" interface="SMU_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="SMU"/>
-
             <monitor_process id="tcs_monitor" interface="TCS_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="PTCS"/>
-
             <monitor_process id="rts_monitor" interface="RTS_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="RTS"/>
-
             <monitor_process id="rover_monitor" interface="ROVER_MONITOR_INTERFACE" machine="" task_exe="generic_monitor" source="ROVER"/>
-
          </monitor_layout>
-
-
          <acsis_process id="sync1" interface="SYNC_TASK" machine="" task_exe="sync_task">
             <process_params>
                <process_param idref="scratch"> /tmp </process_param>
@@ -3280,62 +3131,49 @@
                <process_event id="data_4_reducer1"/>
             </proc_out_events>
          </acsis_process>
-
          <acsis_process id="reducer1" interface="REDUCERPROCESS_INTERFACE" machine="" task_exe="ReducerProcess">
             <process_params/>
             <process_config ref="SPECTRUM_REDUCTION"/>
             <proc_out_events>
                <process_event id="data_4_gridder1"/>
-               <process_event id="data_4_gridder2"/>  
-               <process_event id="data_4_gridder3"/>  
-               <process_event id="data_4_gridder4"/>  
+               <process_event id="data_4_gridder2"/>
+               <process_event id="data_4_gridder3"/>
+               <process_event id="data_4_gridder4"/>
                <process_event id="data_4_specwriter2"/>
             </proc_out_events>
-         </acsis_process>   
-
-         <acsis_process id="gridder2" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder"> 
+         </acsis_process>
+         <acsis_process id="gridder2" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> gridder </process_param>
-            </process_params>      
+            </process_params>
             <proc_out_events/>
-         </acsis_process>   
-
-         <acsis_process id="gridder3" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder"> 
+         </acsis_process>
+         <acsis_process id="gridder3" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> gridder </process_param>
-            </process_params>      
+            </process_params>
             <proc_out_events/>
-         </acsis_process>   
-
-         <acsis_process id="gridder4" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder"> 
+         </acsis_process>
+         <acsis_process id="gridder4" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> gridder </process_param>
-            </process_params>      
+            </process_params>
             <proc_out_events/>
-         </acsis_process>   
-
-         <acsis_process id="gridder5" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder"> 
+         </acsis_process>
+         <acsis_process id="gridder5" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> gridder </process_param>
-            </process_params>      
+            </process_params>
             <proc_out_events/>
-         </acsis_process>   
-
-         <acsis_process id="specwriter" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder"> 
+         </acsis_process>
+         <acsis_process id="specwriter" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> spec_writer </process_param>
-            </process_params>      
+            </process_params>
             <proc_out_events/>
-         </acsis_process>   
-
-
-
-
+         </acsis_process>
       </process_layout>
       <interface_list>
-
-         
-
          <interface id="TCS_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3376,9 +3214,6 @@
                <param id="TCS.AZEL.BASE.C2" type="double" units="rad"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="SMU_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3409,15 +3244,12 @@
                <param id="SMU.JIG_INDEX" type="int"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="RTS_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
                <event id="rts_data"/>
             </out_events>
-            <in_parameters/> 
+            <in_parameters/>
             <out_parameters>
                <param id="RTS" type="record"/>
                <param id="RTS.NUMBER" type="int"/>
@@ -3429,9 +3261,6 @@
                <param id="RTS.STATUS" type="int"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="FE_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3457,10 +3286,6 @@
                <param id="FE.FE_STATE" type="string"/>
             </out_parameters>
          </interface>
-
-
-         
-
          <interface id="IF_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3481,13 +3306,10 @@
                <param id="IF_MONITOR.DCM_TP_OUT" type="floatarray" units="mW"/>
                <param id="IF_MONITOR.DCM_CFREQ" type="floatarray" units="GHz"/>
                <param id="IF_MONITOR.DCM_BW" type="int" units="MHz"/>
-               <param id="IF_MONITOR.DCM_TEMP" type="floatarray" units="K"/>  
+               <param id="IF_MONITOR.DCM_TEMP" type="floatarray" units="K"/>
                <param id="IF_MONITOR.DCM_SN" type="intarray"/>
             </out_parameters>
          </interface>
-
-
-         
          <interface id="ROVER_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3504,10 +3326,6 @@
                <param id="ROVER.POL_CYCLE" type="int"/>
             </out_parameters>
          </interface>
-
-
-         
-
          <interface id="CORR_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3523,7 +3341,7 @@
                <param id="CM_DATA.SUBBAND_ID" type="int"/>
                <param id="CM_DATA.CORR_SN" type="int"/>
                <param id="CM_DATA.SAMPLER_SN" type="int"/>
-               <param id="CM_DATA.STATUS" type="string"/>   
+               <param id="CM_DATA.STATUS" type="string"/>
                <param id="CM_DATA.SEQ_STATE" type="string"/>
                <param id="CM_DATA.INLET_TEMP" type="float" units="K"/>
                <param id="CM_DATA.EXHAUST_TEMP" type="float" units="K"/>
@@ -3537,9 +3355,6 @@
                <param id="CM_DATA.CM_LAGS" type="floatarray"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="WEATHER_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3549,7 +3364,7 @@
             <out_parameters>
                <param id="WEATHER" type="record"/>
                <param id="WEATHER.Humidity" type="float"/>
-               <param id="WEATHER.Pressure" type="float" units="Pa"/> 
+               <param id="WEATHER.Pressure" type="float" units="Pa"/>
                <param id="WEATHER.Air_Temp" type="float" units="K"/>
                <param id="WEATHER.Wind_Speed" type="float" units="m.s-1"/>
                <param id="WEATHER.Wind_Dir" type="float" units="deg"/>
@@ -3564,9 +3379,6 @@
                <param id="WEATHER.Seeing_TIME" type="string"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="WVM_MONITOR_INTERFACE">
             <in_events/>
             <out_events>
@@ -3581,9 +3393,6 @@
                <param id="WVM.TAU_TAI" type="double"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="SYNC_TASK">
             <in_events>
                <event id="sync_source.available"/>
@@ -3611,9 +3420,6 @@
                <param id="GROUP" type="int"/>
             </out_parameters>
          </interface>
-
-         
-
          <interface id="REDUCERPROCESS_INTERFACE">
             <in_events>
                <event id="reducer_source.available"/>
@@ -3630,9 +3436,6 @@
             <in_parameters/>
             <out_parameters/>
          </interface>
-
-         
-
          <interface id="ACSIS_GRIDDER_INTERFACE">
             <in_events>
                <event id="gridder_source.available"/>
@@ -3651,8 +3454,6 @@
             </in_parameters>
             <out_parameters/>
          </interface>
-
       </interface_list>
-
    </ACSIS_CONFIG>
 </OCS_CONFIG>
