@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <SpProg type="pr" subtype="none"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://omp.eao.hawaii.edu/schema/TOML">
@@ -103,6 +103,89 @@
             <switchingMode>Beam</switchingMode>
           </SpIterStareObs>
         </SpIterChop>
+      </SpIterFolder>
+    </SpObs>
+  </SpMSB>
+  <SpMSB checksum="27cf18f6ebfd44af931a74f8f366fe7e" observed="490" remaining="1" type="og" subtype="msb">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <SpDRRecipeRef idref="6"/>
+    <SpInstHeterodyneRef idref="5"/>
+    <SpSiteQualityObsCompRef idref="2"/>
+    <SpTelescopeObsCompRef idref="4"/>
+    <estimatedDuration units="seconds">514.0</estimatedDuration>
+    <library_version>$Revision$</library_version>
+    <priority>1</priority>
+    <title>Modified Higher Venus observation</title>
+    <totalDuration units="seconds">514.0</totalDuration>
+    <SpInstHeterodyne id="5" type="oc" subtype="inst.Heterodyne">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <band>best</band>
+      <bandMode>1</bandMode>
+      <beName>acsis</beName>
+      <feBandWidth>3.3E9</feBandWidth>
+      <feIF>6.0E9</feIF>
+      <feName>Uu</feName>
+      <mixers>1</mixers>
+      <mode>2sb</mode>
+      <skyFrequency>2.6684450000000006E11</skyFrequency>
+      <velocity>0.0</velocity>
+      <velocityDefinition>radio</velocityDefinition>
+      <velocityFrame>LSRK</velocityFrame>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+      <!--          ACSIS Configuration XML        -->
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+      <subsystems>
+          <subsystem if="5.9E9" bw="1.8E9" overlap="1.0E8" channels="3686">
+              <line species="No Line" transition="No Line" rest_freq="2.6684450000000006E11"/>
+          </subsystem>
+      </subsystems>
+
+    </SpInstHeterodyne>
+    <SpDRRecipe id="6" type="oc" subtype="DRRecipe">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <stareRecipe>REDUCE_SCIENCE_CONTINUUM</stareRecipe>
+    </SpDRRecipe>
+    <SpTelescopeObsComp id="4" type="oc" subtype="targetList">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_gui_selectedTelescopePos>SCIENCE</meta_gui_selectedTelescopePos>
+      <meta_unique>true</meta_unique>
+      <BASE TYPE="SCIENCE">
+        <target>
+          <targetName>Venus</targetName>
+          <namedSystem TYPE="major"/>
+        </target>
+      </BASE>
+    </SpTelescopeObsComp>
+    <SpObs msb="false" optional="false" remaining="1" type="ob" subtype="none">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <estimatedDuration units="seconds">514.0</estimatedDuration>
+      <standard>false</standard>
+      <title>Science Observation</title>
+      <SpIterFolder type="if" subtype="none">
+        <meta_gui_collapsed>false</meta_gui_collapsed>
+        <SpIterRepeat type="ic" subtype="repeat">
+          <meta_gui_collapsed>false</meta_gui_collapsed>
+          <repeatCount>1</repeatCount>
+          <title>Repeat 1X</title>
+          <SpIterChop type="ic" subtype="chop">
+            <meta_gui_collapsed>false</meta_gui_collapsed>
+            <SECONDARY>
+              <CHOP SYSTEM="AZEL">
+                <THROW>60.0</THROW>
+                <PA>90.0</PA>
+              </CHOP>
+            </SECONDARY>
+            <SpIterStareObs type="ic" subtype="stareObs">
+              <meta_gui_collapsed>false</meta_gui_collapsed>
+              <secsPerCycle>180</secsPerCycle>
+              <switchingMode>Beam</switchingMode>
+            </SpIterStareObs>
+          </SpIterChop>
+        </SpIterRepeat>
       </SpIterFolder>
     </SpObs>
   </SpMSB>
