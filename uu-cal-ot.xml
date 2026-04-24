@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpProg type="pr" subtype="none"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://omp.eao.hawaii.edu/schema/TOML">
+
+  <meta_gui_collapsed>false</meta_gui_collapsed>
+  <meta_gui_filename>uu-cal-ot.xml</meta_gui_filename>
+  <country>NA</country>
+  <ot_version>20260108</ot_version>
+  <pi>NA</pi>
+  <projectID>MXXXJXXX</projectID>
+  <telescope>jcmt</telescope>
+  <title>Translator Test</title>
+  <SpAND type="fo" subtype="and">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <title>Uu: Pointing &amp; focus</title>
+    <SpInstHeterodyne id="0" type="oc" subtype="inst.Heterodyne">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <band>lsb</band>
+      <bandMode>1</bandMode>
+      <beName>acsis</beName>
+      <feBandWidth>3.3E9</feBandWidth>
+      <feIF>6.0E9</feIF>
+      <feName>Uu</feName>
+      <mixers>1</mixers>
+      <mode>2sb</mode>
+      <skyFrequency>2.30538E11</skyFrequency>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+      <!--          ACSIS Configuration XML        -->
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+      <subsystems>
+          <subsystem if="6.0E9" bw="1.0E9" overlap="0.0" channels="2048">
+              <line species="CO" transition="2 - 1" rest_freq="2.30538E11"/>
+          </subsystem>
+      </subsystems>
+
+    </SpInstHeterodyne>
+    <SpMSB checksum="139202f5e9234b0df7baa1fa44620bdcA" remaining="1" type="og" subtype="msb">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <SpInstHeterodyneRef idref="0"/>
+      <estimatedDuration units="seconds">0.0</estimatedDuration>
+      <library_version>$Revision: 1.5 $</library_version>
+      <priority>98</priority>
+      <title>Uu Point Focus Align-ZXY (7-sample)</title>
+      <totalDuration units="seconds">570.0</totalDuration>
+      <SpObs msb="false" optional="true" remaining="1" type="ob" subtype="none">
+        <meta_gui_collapsed>false</meta_gui_collapsed>
+        <estimatedDuration units="seconds">570.0</estimatedDuration>
+        <standard>true</standard>
+        <title>Uu Point Focus-ZXY (7-sample)</title>
+        <SpIterFolder type="if" subtype="none">
+          <meta_gui_collapsed>false</meta_gui_collapsed>
+          <SpIterChop type="ic" subtype="chop">
+            <meta_gui_collapsed>false</meta_gui_collapsed>
+            <SECONDARY>
+              <CHOP SYSTEM="AZEL">
+                <THROW>60.0</THROW>
+                <PA>90.0</PA>
+              </CHOP>
+            </SECONDARY>
+            <SpIterPointingObs type="ic" subtype="pointingObs">
+              <meta_gui_collapsed>false</meta_gui_collapsed>
+              <autoTarget>true</autoTarget>
+              <switchingMode>Beam</switchingMode>
+            </SpIterPointingObs>
+            <SpIterFocusObs type="ic" subtype="focusObs">
+              <meta_gui_collapsed>false</meta_gui_collapsed>
+              <autoTarget>true</autoTarget>
+              <axis>z</axis>
+              <focusPoints>7</focusPoints>
+              <steps>0.3</steps>
+              <switchingMode>Beam</switchingMode>
+            </SpIterFocusObs>
+            <SpIterFocusObs type="ic" subtype="focusObs">
+              <meta_gui_collapsed>false</meta_gui_collapsed>
+              <autoTarget>true</autoTarget>
+              <axis>x</axis>
+              <focusPoints>7</focusPoints>
+              <steps>1.0</steps>
+              <switchingMode>Beam</switchingMode>
+            </SpIterFocusObs>
+            <SpIterFocusObs type="ic" subtype="focusObs">
+              <meta_gui_collapsed>false</meta_gui_collapsed>
+              <autoTarget>true</autoTarget>
+              <axis>y</axis>
+              <focusPoints>7</focusPoints>
+              <steps>1.0</steps>
+              <switchingMode>Beam</switchingMode>
+            </SpIterFocusObs>
+          </SpIterChop>
+        </SpIterFolder>
+      </SpObs>
+    </SpMSB>
+  </SpAND>
+</SpProg>

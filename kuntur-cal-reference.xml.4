@@ -6,7 +6,7 @@
       <obs_type>focus</obs_type>
    </OBS_SUMMARY>
    <JOS_CONFIG>
-      <tasks>RTS FE_A PTCS SMU CONTROLLER CORRTASK5 IFTASK</tasks>
+      <tasks>RTS FE_KUNTUR PTCS SMU CONTROLLER CORRTASK5 CORRTASK6 CORRTASK7 CORRTASK8 IFTASK</tasks>
       <recipe NAME="focus">
          <parameters
                      FOCUS_AXIS="Y"
@@ -176,7 +176,7 @@
       <HEADER TYPE="STRING"
               KEYWORD="PROJECT"
               COMMENT="Project code"
-              VALUE="MXXXJXX" />
+              VALUE="MXXXJXXX" />
       <HEADER TYPE="STRING"
               KEYWORD="RECIPE"
               COMMENT="ORAC-DR recipe"
@@ -188,11 +188,11 @@
       <HEADER TYPE="STRING"
               KEYWORD="MSBTITLE"
               COMMENT="Title of minimum schedulable block"
-              VALUE="RxA Point Focus-ZXY (7-sample)" />
+              VALUE="Kuntur Point Focus Align-ZXY (7-sample)" />
       <HEADER TYPE="STRING"
               KEYWORD="MSBID"
               COMMENT="Id of minimum schedulable block"
-              VALUE="f8f5ff030d3712de5c73f2d90a14cb01" />
+              VALUE="3db737bdcb6e6c7de86030ad3aa07419A" />
       <HEADER TYPE="STRING"
               KEYWORD="MSBTID"
               COMMENT="Transaction ID of MSB"
@@ -290,7 +290,7 @@
       <HEADER TYPE="STRING"
               KEYWORD="INSTAP"
               COMMENT="Receptor at tracking centre (if any)"
-              VALUE="A" />
+              VALUE="KU1L" />
       <HEADER TYPE="FLOAT"
               KEYWORD="INSTAP_X"
               COMMENT="[arcsec] Aperture X off. rel. to instr centre"
@@ -542,7 +542,7 @@
       <HEADER TYPE="INT"
               KEYWORD="N_MIX"
               COMMENT="No. of mixers"
-              VALUE="1" />
+              VALUE="4" />
       <HEADER TYPE="STRING"
               KEYWORD="OBS_SB"
               COMMENT="The observed sideband (this subsystem)"
@@ -576,7 +576,7 @@
       <HEADER TYPE="STRING"
               KEYWORD="REFRECEP"
               COMMENT="Receptor with unit sensitivity"
-              VALUE="A" />
+              VALUE="KU0L" />
       <HEADER TYPE="FLOAT"
               KEYWORD="MEDTSYS"
               COMMENT="[K] Median of the T_sys across all pixels"
@@ -1244,27 +1244,19 @@
       <HEADER TYPE="FLOAT"
               KEYWORD="ROT_PA"
               COMMENT="[deg] K-mirror angle"
-              VALUE="" >
-         <DRAMA TASK="PTCS" PARAM="ROTATOR.PA_RSYS" EVENT="START" MULT="57.2957795131" />
-      </HEADER>
+              VALUE="" />
       <HEADER TYPE="STRING"
               KEYWORD="ROT_CRD"
               COMMENT="K-mirror coordinate system"
-              VALUE="" >
-         <DRAMA TASK="PTCS" PARAM="ROTATOR.SYSTEM" EVENT="START" />
-      </HEADER>
+              VALUE="" />
       <HEADER TYPE="FLOAT"
               KEYWORD="ROT_IAST"
               COMMENT="[deg] K-mirror image angle at start"
-              VALUE="" >
-         <DRAMA TASK="PTCS" PARAM="ROTATOR.PA_FIXED" EVENT="START" MULT="57.2957795131" />
-      </HEADER>
+              VALUE="" />
       <HEADER TYPE="FLOAT"
               KEYWORD="ROT_IAEN"
               COMMENT="[deg] K-mirror image angle at end"
-              VALUE="" >
-         <DRAMA TASK="PTCS" PARAM="ROTATOR.PA_FIXED" EVENT="END" MULT="57.2957795131" />
-      </HEADER>
+              VALUE="" />
    </HEADER_CONFIG>
    <RTS_CONFIG>
       <stTimeout value="15000" />
@@ -1273,35 +1265,73 @@
       <Sequence size="0" />
    </RTS_CONFIG>
    <FRONTEND_CONFIG>
-      <REST_FREQUENCY>230.538</REST_FREQUENCY>
+      <REST_FREQUENCY>691.4730763</REST_FREQUENCY>
       <FREQ_OFF_SCALE>0</FREQ_OFF_SCALE>
       <SIDEBAND>LSB</SIDEBAND>
-      <SB_MODE>DSB</SB_MODE>
+      <SB_MODE>2SB</SB_MODE>
       <DOPPLER_TRACK ELEC_TUNING="DISCRETE"
                      MECH_TUNING="ONCE" />
-      <RECEPTOR_MASK RECEPTOR_ID="A" VALUE="NEED"/>
+      <RECEPTOR_MASK RECEPTOR_ID="KU0L" VALUE="ON"/>
+      <RECEPTOR_MASK RECEPTOR_ID="KU0U" VALUE="ON"/>
+      <RECEPTOR_MASK RECEPTOR_ID="KU1L" VALUE="NEED"/>
+      <RECEPTOR_MASK RECEPTOR_ID="KU1U" VALUE="ON"/>
    </FRONTEND_CONFIG>
-   <INSTRUMENT NAME="FE_A"
-               SERIAL="RxA3m"
+   <INSTRUMENT NAME="FE_KUNTUR"
+               SERIAL="KUNTUR"
                FOC_STATION="DIRECT"
                X="0.0"
                Y="0.0"
-               WAVELENGTH="1300.40365579644" >
-      <IF_CENTER_FREQ>4.0</IF_CENTER_FREQ>
-      <bw units="MHz" value="1800" />
+               WAVELENGTH="433.556226952694" >
+      <IF_CENTER_FREQ>5</IF_CENTER_FREQ>
+      <bw units="MHz" value="4000" />
       <!-- smu_offset removed -->
-      <waveBand band="Aband" label="A" units="Hz" centre="244E9" width="66.0E9" >
-         <etal>0.95</etal>
+      <!-- pointing_offset removed -->
+      <waveBand band="D" label="W" units="Hz" centre="665E9" width="90E9" >
+         <etal>0.9</etal>
       </waveBand>
-      <receptor id="A"
-                band="Aband"
+      <receptor id="KU0L"
+                band="D"
                 health="ON"
                 x="0.0"
                 y="0.0"
                 pol_type="Linear" >
-         <sensitivity reference="A"
+         <sensitivity reference="KU0L"
                       value="1.0" />
-         <angle units="rad" value="0.5463" />
+         <angle units="rad" value="0.0" />
+         <sideband value="LSB" />
+      </receptor>
+      <receptor id="KU0U"
+                band="D"
+                health="ON"
+                x="0.0"
+                y="0.0"
+                pol_type="Linear" >
+         <sensitivity reference="KU0L"
+                      value="1.0" />
+         <angle units="rad" value="0.0" />
+         <sideband value="USB" />
+      </receptor>
+      <receptor id="KU1L"
+                band="D"
+                health="ON"
+                x="0.0"
+                y="0.0"
+                pol_type="Linear" >
+         <sensitivity reference="KU0L"
+                      value="1.0" />
+         <angle units="rad" value="1.570796" />
+         <sideband value="LSB" />
+      </receptor>
+      <receptor id="KU1U"
+                band="D"
+                health="ON"
+                x="0.0"
+                y="0.0"
+                pol_type="Linear" >
+         <sensitivity reference="KU0L"
+                      value="1.0" />
+         <angle units="rad" value="1.570796" />
+         <sideband value="USB" />
       </receptor>
    </INSTRUMENT>
    <TCS_CONFIG TELESCOPE="JCMT">
@@ -1319,14 +1349,14 @@
             <PA>90</PA>
          </CHOP>
       </SECONDARY>
-      <INST_AP NAME="A" />
+      <INST_AP NAME="KU1L" />
       <DOME MODE="BASE" />
    </TCS_CONFIG>
    <ACSIS_CONFIG>
       <cube_list>
          <cube id="CUBE1">
-            <x_pix_size units="arcsec">8.94091693686229</x_pix_size>
-            <y_pix_size units="arcsec">8.94091693686229</y_pix_size>
+            <x_pix_size units="arcsec">2.98091303832065</x_pix_size>
+            <y_pix_size units="arcsec">2.98091303832065</y_pix_size>
             <data_source>
                <spw_ref ref="SPW1"/>
                <range units="channel">
@@ -1342,12 +1372,35 @@
             <grid_function type="TopHat" />
             <pos_ang>0</pos_ang>
             <tcs_coord type="AZEL" />
-            <smoothing_rad>4.47045846843115</smoothing_rad>
+            <smoothing_rad>1.49045651916032</smoothing_rad>
+         </cube>
+         <cube id="CUBE2">
+            <x_pix_size units="arcsec">2.98091303832065</x_pix_size>
+            <y_pix_size units="arcsec">2.98091303832065</y_pix_size>
+            <data_source>
+               <spw_ref ref="SPW2"/>
+               <range units="channel">
+                  <min>255</min>
+                  <max>1791</max>
+               </range>
+            </data_source>
+            <x_offset>0</x_offset>
+            <y_offset>0</y_offset>
+            <x_npix>1</x_npix>
+            <y_npix>1</y_npix>
+            <projection type="TAN" />
+            <grid_function type="TopHat" />
+            <pos_ang>0</pos_ang>
+            <tcs_coord type="AZEL" />
+            <smoothing_rad>1.49045651916032</smoothing_rad>
          </cube>
       </cube_list>
       <line_list>
-         <rest_frequency id="trCO2-1" units="GHz" molecule="CO" transition="2 - 1" >
-            230.538
+         <rest_frequency id="trCO6-5" units="GHz" molecule="CO" transition="6 - 5" >
+            691.4730763
+         </rest_frequency>
+         <rest_frequency id="trNOLINE" units="GHz" molecule="No Line" transition="No Line" >
+            701.4730763
          </rest_frequency>
       </line_list>
       <spw_list>
@@ -1358,10 +1411,29 @@
             <bandwidth_mode mode="1GHzx2048" />
             <window type="truncate" />
             <align_shift>0</align_shift>
-            <rest_freq_ref ref="trCO2-1" />
+            <rest_freq_ref ref="trCO6-5" />
             <fe_sideband sideband="-1" />
             <if_coordinate>
-               <if_ref_freq units="GHz">4</if_ref_freq>
+               <if_ref_freq units="GHz">5</if_ref_freq>
+               <if_ref_channel>1024</if_ref_channel>
+               <if_chan_width units="Hz">488281.25</if_chan_width>
+               <if_nchans>2048</if_nchans>
+            </if_coordinate>
+            <line_region>
+               <range units="pixel">
+                  <min>0</min>
+                  <max>2047</max>
+               </range>
+            </line_region>
+         </spectral_window>
+         <spectral_window id="SPW2" spectrum_id="2">
+            <bandwidth_mode mode="1GHzx2048" />
+            <window type="truncate" />
+            <align_shift>0</align_shift>
+            <rest_freq_ref ref="trNOLINE" />
+            <fe_sideband sideband="1" />
+            <if_coordinate>
+               <if_ref_freq units="GHz">5</if_ref_freq>
                <if_ref_channel>1024</if_ref_channel>
                <if_chan_width units="Hz">488281.25</if_chan_width>
                <if_nchans>2048</if_nchans>
@@ -1407,12 +1479,13 @@
          <dcm id="29" bw_mode="1GHz"/>
          <dcm id="30" bw_mode="1GHz"/>
          <dcm id="31" bw_mode="1GHz"/>
-         <lo2 id="0" freq="6500"/>
-         <lo2 id="1" freq="6500"/>
-         <lo2 id="2" freq="6500"/>
-         <lo2 id="3" freq="6500"/>
+         <lo2 id="0" freq="7500"/>
+         <lo2 id="1" freq="7500"/>
+         <lo2 id="2" freq="7500"/>
+         <lo2 id="3" freq="7500"/>
          <lo3 freq="2000.0"/>
          <quadrant id="2" subband_mode="4"/>
+         <quadrant id="3" subband_mode="4"/>
       </ACSIS_IF>
       <ACSIS_corr>
          <cm id="0" bw_mode="1GHzx2048"/>
@@ -1450,7 +1523,10 @@
          <rts_parms int_interval="50" timing_src="RTS_SOFT"/>
       </ACSIS_corr>
       <ACSIS_map>
-         <map_id cm_id="16" dcm_id="16" receptor_id="A" spw_id="SPW1"/>
+         <map_id cm_id="16" dcm_id="16" receptor_id="KU1L" spw_id="SPW1"/>
+         <map_id cm_id="20" dcm_id="20" receptor_id="KU1U" spw_id="SPW2"/>
+         <map_id cm_id="24" dcm_id="24" receptor_id="KU0L" spw_id="SPW1"/>
+         <map_id cm_id="28" dcm_id="28" receptor_id="KU0U" spw_id="SPW2"/>
       </ACSIS_map>
       <be_deg_factor>1.23</be_deg_factor>
       <red_obs_mode>grid/chop</red_obs_mode>
@@ -2192,15 +2268,64 @@
                <process_event id="data_4_reducer1"/>
             </proc_out_events>
          </acsis_process>
+         <acsis_process id="sync2" interface="SYNC_TASK" machine="" task_exe="sync_task">
+            <process_params>
+               <process_param idref="scratch"> /tmp </process_param>
+            </process_params>
+            <proc_out_events>
+               <process_event id="data_4_reducer2"/>
+            </proc_out_events>
+         </acsis_process>
+         <acsis_process id="sync3" interface="SYNC_TASK" machine="" task_exe="sync_task">
+            <process_params>
+               <process_param idref="scratch"> /tmp </process_param>
+            </process_params>
+            <proc_out_events>
+               <process_event id="data_4_reducer3"/>
+            </proc_out_events>
+         </acsis_process>
+         <acsis_process id="sync4" interface="SYNC_TASK" machine="" task_exe="sync_task">
+            <process_params>
+               <process_param idref="scratch"> /tmp </process_param>
+            </process_params>
+            <proc_out_events>
+               <process_event id="data_4_reducer4"/>
+            </proc_out_events>
+         </acsis_process>
          <acsis_process id="reducer1" interface="REDUCERPROCESS_INTERFACE" machine="" task_exe="ReducerProcess">
             <process_params/>
             <process_config ref="SPECTRUM_REDUCTION"/>
             <proc_out_events>
                <process_event id="data_4_gridder1"/>
+               <process_event id="data_4_gridder2"/>
                <process_event id="data_4_specwriter2"/>
             </proc_out_events>
          </acsis_process>
-         <acsis_process id="gridder2" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
+         <acsis_process id="reducer2" interface="REDUCERPROCESS_INTERFACE" machine="" task_exe="ReducerProcess">
+            <process_params/>
+            <process_config ref="SPECTRUM_REDUCTION"/>
+            <proc_out_events>
+            </proc_out_events>
+         </acsis_process>
+         <acsis_process id="reducer3" interface="REDUCERPROCESS_INTERFACE" machine="" task_exe="ReducerProcess">
+            <process_params/>
+            <process_config ref="SPECTRUM_REDUCTION"/>
+            <proc_out_events>
+            </proc_out_events>
+         </acsis_process>
+         <acsis_process id="reducer4" interface="REDUCERPROCESS_INTERFACE" machine="" task_exe="ReducerProcess">
+            <process_params/>
+            <process_config ref="SPECTRUM_REDUCTION"/>
+            <proc_out_events>
+            </proc_out_events>
+         </acsis_process>
+         <acsis_process id="gridder7" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
+            <process_params>
+               <process_param idref="type"> gridder </process_param>
+            </process_params>
+            <proc_out_events/>
+         </acsis_process>
+         <acsis_process id="gridder8" interface="ACSIS_GRIDDER_INTERFACE" machine="" task_exe="acsis_gridder">
             <process_params>
                <process_param idref="type"> gridder </process_param>
             </process_params>
