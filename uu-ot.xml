@@ -299,4 +299,91 @@
       </SpIterFolder>
     </SpObs>
   </SpMSB>
+  <SpMSB remaining="1" type="og" subtype="msb">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <SpDRRecipeRef idref="14"/>
+    <SpInstHeterodyneRef idref="12"/>
+    <SpSiteQualityObsCompRef idref="13"/>
+    <SpTelescopeObsCompRef idref="11"/>
+    <estimatedDuration units="seconds">1113.6</estimatedDuration>
+    <library_version>$Revision$</library_version>
+    <priority>99</priority>
+    <title>Beam-switch stare continuum mode</title>
+    <totalDuration units="seconds">1113.6</totalDuration>
+    <SpSiteQualityObsComp id="13" type="oc" subtype="schedInfo">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <noiseCalculationTau>0.08</noiseCalculationTau>
+    </SpSiteQualityObsComp>
+    <SpInstHeterodyne id="12" type="oc" subtype="inst.Heterodyne">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <band>best</band>
+      <bandMode>1</bandMode>
+      <beName>acsis</beName>
+      <feBandWidth>3.3E9</feBandWidth>
+      <feIF>6.0E9</feIF>
+      <feName>Uu</feName>
+      <mixers>1</mixers>
+      <mode>2sb</mode>
+      <skyFrequency>2.30538E11</skyFrequency>
+      <velocityDefinition>radio</velocityDefinition>
+      <velocityFrame>LSRK</velocityFrame>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+      <!--          ACSIS Configuration XML        -->
+      <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+      <subsystems>
+          <subsystem if="6.0E9" bw="1.0E9" overlap="0.0" channels="2048">
+              <line species="CO" transition="2 - 1" rest_freq="2.30538E11"/>
+          </subsystem>
+      </subsystems>
+
+    </SpInstHeterodyne>
+    <SpDRRecipe id="14" type="oc" subtype="DRRecipe">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <stareRecipe>REDUCE_SCIENCE_CONTINUUM</stareRecipe>
+    </SpDRRecipe>
+    <SpTelescopeObsComp id="11" type="oc" subtype="targetList">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_gui_selectedTelescopePos>SCIENCE</meta_gui_selectedTelescopePos>
+      <meta_unique>true</meta_unique>
+      <BASE TYPE="SCIENCE">
+        <target>
+          <targetName>Test</targetName>
+          <spherSystem SYSTEM="J2000">
+            <c1>12:34:56</c1>
+            <c2>7:08:09</c2>
+            <rv defn="radio" frame="LSRK">0.0</rv>
+          </spherSystem>
+        </target>
+      </BASE>
+    </SpTelescopeObsComp>
+    <SpObs msb="false" optional="false" remaining="1" type="ob" subtype="none">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <estimatedDuration units="seconds">1113.6</estimatedDuration>
+      <standard>false</standard>
+      <title>Science Observation</title>
+      <SpIterFolder type="if" subtype="none">
+        <meta_gui_collapsed>false</meta_gui_collapsed>
+        <SpIterChop type="ic" subtype="chop">
+          <meta_gui_collapsed>false</meta_gui_collapsed>
+          <SECONDARY>
+            <CHOP SYSTEM="AZEL">
+              <THROW>60.0</THROW>
+              <PA>90.0</PA>
+            </CHOP>
+          </SECONDARY>
+          <SpIterStareObs type="ic" subtype="stareObs">
+            <meta_gui_collapsed>false</meta_gui_collapsed>
+            <continuumMode>true</continuumMode>
+            <secsPerCycle>360</secsPerCycle>
+            <switchingMode>Beam</switchingMode>
+          </SpIterStareObs>
+        </SpIterChop>
+      </SpIterFolder>
+    </SpObs>
+  </SpMSB>
 </SpProg>
