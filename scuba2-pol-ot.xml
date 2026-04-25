@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <SpProg type="pr" subtype="none"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://omp.jach.hawaii.edu/schema/TOML">
+	xmlns="http://omp.eao.hawaii.edu/schema/TOML">
 
   <meta_gui_collapsed>false</meta_gui_collapsed>
   <meta_gui_filename>scuba2-pol-ot.xml</meta_gui_filename>
@@ -11,39 +11,33 @@
   <projectID>MXXXJXX</projectID>
   <telescope>jcmt</telescope>
   <title>Translator Test</title>
+  <SpInstSCUBA2 id="1" type="oc" subtype="inst.SCUBA2">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <meta_unique>true</meta_unique>
+  </SpInstSCUBA2>
+  <SpTelescopeObsComp id="0" type="oc" subtype="targetList">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <meta_gui_selectedTelescopePos>SCIENCE</meta_gui_selectedTelescopePos>
+    <meta_unique>true</meta_unique>
+    <BASE TYPE="SCIENCE">
+      <target>
+        <targetName>DR21</targetName>
+        <spherSystem SYSTEM="J2000">
+          <c1>20:39:01.100</c1>
+          <c2>+42:19:43.00</c2>
+          <rv defn="radio" frame="LSRK">0.0</rv>
+        </spherSystem>
+      </target>
+    </BASE>
+  </SpTelescopeObsComp>
   <SpMSB remaining="1" type="og" subtype="msb">
     <meta_gui_collapsed>false</meta_gui_collapsed>
     <SpInstSCUBA2Ref idref="1"/>
-    <SpSiteQualityObsCompRef idref="2"/>
     <SpTelescopeObsCompRef idref="0"/>
     <estimatedDuration units="seconds">665.0</estimatedDuration>
     <priority>99</priority>
     <title>POL-2 Stare with Microsteps</title>
     <totalDuration units="seconds">665.0</totalDuration>
-    <SpInstSCUBA2 id="1" type="oc" subtype="inst.SCUBA2">
-      <meta_gui_collapsed>false</meta_gui_collapsed>
-      <meta_unique>true</meta_unique>
-    </SpInstSCUBA2>
-    <SpTelescopeObsComp id="0" type="oc" subtype="targetList">
-      <meta_gui_collapsed>false</meta_gui_collapsed>
-      <meta_gui_selectedTelescopePos>SCIENCE</meta_gui_selectedTelescopePos>
-      <meta_unique>true</meta_unique>
-      <BASE TYPE="SCIENCE">
-        <target>
-          <targetName>DR21</targetName>
-          <spherSystem SYSTEM="J2000">
-            <c1>20:39:01.100</c1>
-            <c2>+42:19:43.00</c2>
-            <rv defn="radio" frame="LSRK">0.0</rv>
-          </spherSystem>
-        </target>
-      </BASE>
-    </SpTelescopeObsComp>
-    <SpSiteQualityObsComp id="2" type="oc" subtype="schedInfo">
-      <meta_gui_collapsed>false</meta_gui_collapsed>
-      <meta_unique>true</meta_unique>
-      <noiseCalculationTau>0.08</noiseCalculationTau>
-    </SpSiteQualityObsComp>
     <SpObs msb="false" optional="false" remaining="1" type="ob" subtype="none">
       <meta_gui_collapsed>false</meta_gui_collapsed>
       <estimatedDuration units="seconds">665.0</estimatedDuration>
@@ -70,6 +64,48 @@
             </SpIterStareObs>
           </SpIterPOL>
         </SpIterMicroStep>
+      </SpIterFolder>
+    </SpObs>
+  </SpMSB>
+  <SpMSB remaining="1" type="og" subtype="msb">
+    <meta_gui_collapsed>false</meta_gui_collapsed>
+    <SpDRRecipeRef idref="2"/>
+    <SpInstSCUBA2Ref idref="1"/>
+    <SpTelescopeObsCompRef idref="0"/>
+    <estimatedDuration units="seconds">1860.0</estimatedDuration>
+    <library_version>$Revision$</library_version>
+    <priority>99</priority>
+    <title>POL-2 daisy map</title>
+    <totalDuration units="seconds">1860.0</totalDuration>
+    <SpDRRecipe id="2" type="oc" subtype="DRRecipe">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <meta_unique>true</meta_unique>
+      <rasterRecipe>REDUCE_POL_SCAN</rasterRecipe>
+    </SpDRRecipe>
+    <SpObs msb="false" optional="false" remaining="1" type="ob" subtype="none">
+      <meta_gui_collapsed>false</meta_gui_collapsed>
+      <estimatedDuration units="seconds">1860.0</estimatedDuration>
+      <standard>false</standard>
+      <title>Science Observation</title>
+      <SpIterFolder type="if" subtype="none">
+        <meta_gui_collapsed>false</meta_gui_collapsed>
+        <SpIterPOL type="ic" subtype="instPOL">
+          <meta_gui_collapsed>false</meta_gui_collapsed>
+          <continuousSpin>0.0</continuousSpin>
+          <SpIterRasterObs type="ic" subtype="rasterObs">
+            <meta_gui_collapsed>false</meta_gui_collapsed>
+            <obsArea>
+              <PA>0.0</PA>
+              <SCAN_AREA>
+                <AREA HEIGHT="180.0" WIDTH="180.0"/>
+                <SCAN DY="30.0" VELOCITY="90.0" SYSTEM="FPLANE">
+                </SCAN>
+              </SCAN_AREA>
+            </obsArea>
+            <sampleTime>1800.0</sampleTime>
+            <scanPattern>Point Source</scanPattern>
+          </SpIterRasterObs>
+        </SpIterPOL>
       </SpIterFolder>
     </SpObs>
   </SpMSB>
